@@ -23,3 +23,14 @@
     "vite": "^6.2.0"
   }
 }
+"scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    // --- ADD THESE TWO LINES ---
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist" 
+    // Assuming 'dist' is the folder created by 'npm run build'
+    // For React/CRA projects, this folder is usually 'build'. For Vite projects, it's 'dist'.
+},
