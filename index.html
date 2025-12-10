@@ -1,303 +1,441 @@
+
 <!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Marketing Widget - AI Driven Growth</title>
-
-    <!-- Set dark mode before paint -->
-    <script>
-      (function () {
-        try {
-          const ls = localStorage.getItem("theme");
-          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          if (ls === "dark" || (!ls && prefersDark)) {
-            document.documentElement.classList.add("dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-          }
-        } catch (e) {}
-      })();
-    </script>
-
-    <!-- Tailwind config MUST come before the CDN script -->
-    <script>
-      tailwind = window.tailwind || {};
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#135bec",
-              "primary-green": "#00c77d",
-              "background-light": "#f6f6f8",
-              "background-dark": "#101622",
-              "background-home": "#0a0a23",
-              "surface-dark": "#1a2230",
-            },
-            fontFamily: {
-              sans: ["Manrope", "sans-serif"],
-              display: ["Space Grotesk", "sans-serif"],
-              sora: ["Sora", "sans-serif"],
-              inter: ["Inter", "sans-serif"],
-              poppins: ["Poppins", "sans-serif"],
-            },
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Marketing Widget - Cognitive Reach</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-dark': '#0C0F1A',
+            'brand-green': '#33FF99',
+            'brand-green-dark': '#28A745',
+            'brand-blue': '#3399FF',
+            'brand-blue-dark': '#007BFF',
+            'brand-light': '#FFFFFF',
+            'brand-gray': '#A0AEC0',
+            'brand-card': 'rgba(255, 255, 255, 0.05)',
+            'brand-card-border': 'rgba(255, 255, 255, 0.1)',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
           },
         },
-      };
-    </script>
+      },
+    };
+  </script>
+</head>
+<body class="bg-brand-dark text-brand-light font-sans antialiased">
+  <div class="relative min-h-screen overflow-x-hidden">
+    <!-- Background Gradients -->
+    <div class="absolute top-0 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none"></div>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <!-- Header -->
+    <header class="bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-800">
+      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <svg class="h-8 w-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+          <a class="text-xl font-bold text-white" href="#">Marketing Widget</a>
+        </div>
+        <ul class="hidden md:flex items-center space-x-8 text-slate-400">
+          <li><a class="hover:text-white transition-colors" href="#">Solutions</a></li>
+          <li><a class="hover:text-white transition-colors" href="#">Pricing</a></li>
+          <li><a class="hover:text-white transition-colors" href="#">Resources</a></li>
+          <li><a class="hover:text-white transition-colors" href="#">Company</a></li>
+        </ul>
+        <div class="hidden md:flex items-center gap-4">
+          <a class="text-white font-medium hover:text-emerald-400 transition-colors" href="#">Login</a>
+          <a class="bg-gradient-to-r from-cyan-500 to-emerald-400 text-slate-950 font-bold py-2 px-6 rounded-full transition-transform hover:scale-105" href="#">
+            Get a Quote
+          </a>
+        </div>
+        <button class="md:hidden text-2xl text-white" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+      <!-- Mobile Menu -->
+      <div class="hidden md:hidden bg-slate-900 border-t border-slate-800" id="mobile-menu">
+        <ul class="flex flex-col p-4 space-y-4 text-slate-400">
+          <li><a class="hover:text-white transition-colors block" href="#">Solutions</a></li>
+          <li><a class="hover:text-white transition-colors block" href="#">Pricing</a></li>
+          <li><a class="hover:text-white transition-colors block" href="#">Resources</a></li>
+          <li><a class="hover:text-white transition-colors block" href="#">Company</a></li>
+          <li class="pt-4 border-t border-slate-800">
+            <a class="text-white font-medium hover:text-emerald-400 transition-colors block mb-4" href="#">Login</a>
+            <a class="bg-gradient-to-r from-cyan-500 to-emerald-400 text-slate-950 font-bold py-2 px-6 rounded-full inline-block" href="#">Get a Quote</a>
+          </li>
+        </ul>
+      </div>
+    </header>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Space+Grotesk:wght@300..700&family=Sora:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+      <!-- Background Blurs -->
+      <div class="pointer-events-none absolute inset-0">
+        <div class="absolute -top-40 left-1/3 h-96 w-96 rounded-full bg-emerald-500/20 blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 h-[28rem] w-[28rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
+      </div>
 
-    <style>
-      body {
-        font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
-      .font-sora {
-        font-family: "Sora", sans-serif;
-      }
-      .text-glow {
-        text-shadow: 0 0 8px rgba(0, 199, 125, 0.4);
-      }
-      ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #1a2230;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #334155;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #475569;
-      }
-    </style>
-  </head>
-
-  <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white">
-    <div id="root">
-      <div class="min-h-screen bg-background-light dark:bg-background-home text-slate-900 dark:text-white">
-        <!-- Header -->
-        <header class="border-b border-slate-800/60 bg-background-home/80 backdrop-blur">
-          <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <div
-                class="h-8 w-8 rounded-xl bg-primary-green flex items-center justify-center text-xs font-bold text-background-home"
-              >
-                MW
-              </div>
-              <div>
-                <div class="font-sora font-semibold tracking-tight">Marketing Widget</div>
-                <div class="text-xs text-slate-400">AI-Driven Growth Studio</div>
-              </div>
-            </div>
-            <nav class="hidden md:flex gap-6 text-sm text-slate-300">
-              <a href="#services" class="hover:text-primary-green transition">Services</a>
-              <a href="#playbooks" class="hover:text-primary-green transition">Playbooks</a>
-              <a href="#workflow" class="hover:text-primary-green transition">Workflow</a>
-            </nav>
-            <a
-              href="#contact"
-              class="inline-flex items-center px-4 py-2 rounded-full bg-primary-green text-background-home text-sm font-semibold shadow-lg shadow-emerald-500/30"
-            >
-              Book a Strategy Call
+      <div class="container mx-auto px-6 relative z-10 py-16 lg:py-24">
+        <div class="mx-auto max-w-4xl text-center">
+          <div class="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-300 mb-5">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-300"></span>
+            Elite Growth Partner for performance-heavy brands
+          </div>
+          <h1 class="text-balance text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl lg:text-5xl">
+            Turn messy marketing into a <span class="text-emerald-300">predictable revenue engine</span>.
+          </h1>
+          <p class="mt-4 text-balance text-sm text-slate-300 sm:text-base">
+            Marketing Widget sits between your data and your decisions – fixing tracking, simplifying funnels,
+            and giving your team a clear, calm roadmap for compounding growth.
+          </p>
+          <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            <a href="#growth-session" class="inline-flex items-center justify-center rounded-full bg-emerald-400 px-6 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/40 hover:bg-emerald-300 transition-colors">
+              Book a 30-min Growth Session
+            </a>
+            <a href="#" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-2.5 text-sm font-semibold text-slate-200 hover:border-emerald-400 hover:text-emerald-300 transition-colors">
+              Explore Growth Playbooks
             </a>
           </div>
-        </header>
+          <p class="mt-3 text-xs text-slate-400">
+            No fluffy audits. No vanity metrics. Just an honest growth roadmap – or we walk away.
+          </p>
+        </div>
 
-        <!-- Main content -->
-        <main class="max-w-6xl mx-auto px-4 pt-12 pb-16">
-          <!-- Hero -->
-          <section class="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <div
-                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-xs mb-4"
-              >
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-                AI + Human team for performance-obsessed brands
-              </div>
-              <h1 class="font-sora text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-4">
-                Ship <span class="text-primary-green text-glow">AI-driven funnels</span><br />
-                without burning your team out.
-              </h1>
-              <p class="text-sm md:text-base text-slate-300 mb-6 max-w-xl">
-                We plug into your stack as your growth partner — turning scattered tools, ad accounts and landing pages
-                into one predictable, data-driven revenue system.
-              </p>
-              <div class="flex flex-wrap gap-3 mb-6">
-                <a
-                  href="#contact"
-                  class="inline-flex items-center px-4 py-2.5 rounded-full bg-primary text-white text-sm font-semibold shadow-lg shadow-blue-500/30"
-                >
-                  Talk to an AI Growth Lead
-                </a>
-                <span class="text-xs text-slate-400"> Avg. response time: &lt; 24 hours </span>
-              </div>
-              <div class="grid grid-cols-3 gap-4 text-xs text-slate-300">
-                <div>
-                  <div class="text-lg font-semibold text-white">+312%</div>
-                  <div class="text-slate-400">Avg. ROAS uplift</div>
-                </div>
-                <div>
-                  <div class="text-lg font-semibold text-white">12–16</div>
-                  <div class="text-slate-400">Weeks to full system</div>
-                </div>
-                <div>
-                  <div class="text-lg font-semibold text-white">0</div>
-                  <div class="text-slate-400">Long-term lock-in</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right card -->
-            <div class="relative">
-              <div class="absolute inset-0 bg-primary-green/20 blur-3xl rounded-full opacity-40"></div>
-              <div class="relative bg-surface-dark/70 border border-slate-800 rounded-3xl p-5 shadow-2xl">
-                <div class="flex items-center justify-between mb-4">
-                  <div>
-                    <div class="text-xs text-slate-400">Live funnel overview</div>
-                    <div class="text-sm font-medium text-white">MarketingWidget · AI Orchestrated</div>
-                  </div>
-                  <span
-                    class="px-2 py-1 rounded-full text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
-                  >
-                    Real-time sync
-                  </span>
-                </div>
-                <div class="grid grid-cols-3 gap-3 mb-4 text-xs">
-                  <div class="bg-background-home/80 border border-slate-800 rounded-xl p-3">
-                    <div class="text-slate-400 mb-1">Ad Spend</div>
-                    <div class="text-sm font-semibold text-white">$12.3k</div>
-                    <div class="text-[10px] text-emerald-400 mt-1">+18% vs last 7d</div>
-                  </div>
-                  <div class="bg-background-home/80 border border-slate-800 rounded-xl p-3">
-                    <div class="text-slate-400 mb-1">Qualified leads</div>
-                    <div class="text-sm font-semibold text-white">274</div>
-                    <div class="text-[10px] text-emerald-400 mt-1">+41% conversion</div>
-                  </div>
-                  <div class="bg-background-home/80 border border-slate-800 rounded-xl p-3">
-                    <div class="text-slate-400 mb-1">Revenue</div>
-                    <div class="text-sm font-semibold text-white">$83.9k</div>
-                    <div class="text-[10px] text-slate-400 mt-1">Rolling 30 days</div>
-                  </div>
-                </div>
-                <div class="border border-dashed border-slate-700 rounded-xl p-3 text-xs text-slate-300">
-                  <div class="font-medium mb-1 text-white">What we actually do</div>
-                  <ul class="list-disc list-inside space-y-1 text-[11px] text-slate-300">
-                    <li>Architect AI-assisted ad + landing page funnels.</li>
-                    <li>Set up analytics, events &amp; decision dashboards.</li>
-                    <li>Continuously test, learn and refine your system.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Services -->
-          <section id="services" class="mt-16 border-t border-slate-800/60 pt-10">
-            <h2 class="font-sora text-xl md:text-2xl font-semibold mb-4">Where Marketing Widget plugs in</h2>
-            <p class="text-sm text-slate-400 mb-6 max-w-2xl">
-              We’re not “just another agency”. We are your embedded growth squad — strategy, design, CRO, analytics and
-              automation in one aligned crew.
-            </p>
-            <div class="grid md:grid-cols-3 gap-5 text-sm">
-              <div class="bg-background-home/80 border border-slate-800 rounded-2xl p-4">
-                <div class="text-xs font-semibold text-emerald-300 mb-1">01 · Strategy &amp; Positioning</div>
-                <div class="font-medium mb-2 text-white">Offer, narrative, and funnel map</div>
-                <p class="text-slate-400 text-xs">
-                  We help you clarify your offer, map out the buying journey, and turn it into a step-by-step funnel
-                  with clear metrics and owners for every stage.
-                </p>
-              </div>
-              <div class="bg-background-home/80 border border-slate-800 rounded-2xl p-4">
-                <div class="text-xs font-semibold text-emerald-300 mb-1">02 · AI-Native Execution</div>
-                <div class="font-medium mb-2 text-white">Ads, pages, flows &amp; content</div>
-                <p class="text-slate-400 text-xs">
-                  Creative that hits the right pain points, landing pages that convert, and lifecycle flows that keep
-                  compounding results — all powered by Gemini + your data.
-                </p>
-              </div>
-              <div class="bg-background-home/80 border border-slate-800 rounded-2xl p-4">
-                <div class="text-xs font-semibold text-emerald-300 mb-1">03 · Measurement &amp; Ops</div>
-                <div class="font-medium mb-2 text-white">Dashboards &amp; decision loops</div>
-                <p class="text-slate-400 text-xs">
-                  Event tracking, dashboards and weekly reviews so you’re never guessing what’s working. We make sure
-                  your team actually acts on the data.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <!-- Contact -->
-          <section id="contact" class="mt-16 border-t border-slate-800/60 pt-10 pb-4">
-            <div class="grid md:grid-cols-[1.4fr,1fr] gap-8 items-start">
+        <!-- Dashboard Showcase -->
+        <div class="mt-14 grid gap-6 lg:grid-cols-[3fr,2fr] lg:items-start">
+          <!-- Live Dashboard Card -->
+          <div class="relative rounded-3xl border border-slate-800/80 bg-slate-900/40 p-6 shadow-xl shadow-emerald-500/10">
+            <div class="flex items-center justify-between gap-4">
               <div>
-                <h3 class="font-sora text-xl font-semibold mb-2">Ready to design an unfair advantage?</h3>
-                <p class="text-sm text-slate-400 mb-4 max-w-xl">
-                  Share a bit about your product, stage, and goals. We’ll come back with a no-fluff funnel breakdown,
-                  growth opportunities, and whether we're the right fit.
-                </p>
-                <ul class="text-xs text-slate-300 space-y-1">
-                  <li>• Ideal for SaaS, DTC, education and service brands.</li>
-                  <li>• We only take on a small number of partners per quarter.</li>
-                  <li>• You keep all assets, systems and documentation.</li>
-                </ul>
+                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Live Growth Dashboard</p>
+                <p class="mt-1 text-xl font-semibold text-slate-50">$380,420 <span class="text-xs font-normal text-slate-400">/ last 30 days</span></p>
               </div>
-              <form
-                class="bg-background-home/80 border border-slate-800 rounded-2xl p-4 space-y-3 text-xs"
-                onsubmit="return false"
-              >
-                <div>
-                  <label class="block mb-1 text-slate-300">Work email</label>
-                  <input
-                    type="email"
-                    required
-                    class="w-full px-3 py-2 rounded-md bg-slate-900/70 border border-slate-700 text-sm focus:outline-none focus:ring-1 focus:ring-primary-green"
-                  />
-                </div>
-                <div>
-                  <label class="block mb-1 text-slate-300">Company / brand</label>
-                  <input
-                    type="text"
-                    class="w-full px-3 py-2 rounded-md bg-slate-900/70 border border-slate-700 text-sm focus:outline-none focus:ring-1 focus:ring-primary-green"
-                  />
-                </div>
-                <div>
-                  <label class="block mb-1 text-slate-300">What are you trying to achieve in the next 90 days?</label>
-                  <textarea
-                    rows="3"
-                    class="w-full px-3 py-2 rounded-md bg-slate-900/70 border border-slate-700 text-sm focus:outline-none focus:ring-1 focus:ring-primary-green"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  class="w-full mt-1 inline-flex items-center justify-center px-4 py-2.5 rounded-md bg-primary-green text-background-home font-semibold"
-                >
-                  Request a strategy call
-                </button>
-                <p class="text-[10px] text-slate-500">
-                  No spam, ever. We’ll only email you to understand your context and share a potential roadmap.
-                </p>
-              </form>
+              <div class="rounded-2xl bg-emerald-500/10 px-3 py-2 text-right">
+                <p class="text-[10px] uppercase tracking-wide text-emerald-300">Attributed Growth</p>
+                <p class="text-sm font-semibold text-emerald-300">+38.6%</p>
+              </div>
             </div>
-          </section>
-        </main>
+            <div class="mt-6 grid gap-4 sm:grid-cols-3">
+              <div class="rounded-2xl bg-slate-900/80 p-4">
+                <p class="text-[11px] uppercase tracking-wide text-slate-400">Tracking Confidence</p>
+                <p class="mt-2 text-lg font-semibold text-slate-50">97.2%</p>
+                <p class="mt-1 text-xs text-slate-400">Cross-platform signals stitched & verified</p>
+              </div>
+              <div class="rounded-2xl bg-slate-900/80 p-4">
+                <p class="text-[11px] uppercase tracking-wide text-slate-400">Media Efficiency</p>
+                <p class="mt-2 text-lg font-semibold text-slate-50">4.3x</p>
+                <p class="mt-1 text-xs text-slate-400">Blended MER, last 90 days</p>
+              </div>
+              <div class="rounded-2xl bg-slate-900/80 p-4">
+                <p class="text-[11px] uppercase tracking-wide text-slate-400">Decision Lag</p>
+                <p class="mt-2 text-lg font-semibold text-slate-50">-63%</p>
+                <p class="mt-1 text-xs text-slate-400">From messy dashboards to 1-page clarity</p>
+              </div>
+            </div>
+          </div>
 
-        <footer class="border-t border-slate-800/60 py-4 text-xs text-slate-500 text-center">
-          Marketing Widget · Built with love, data, and AI.
-        </footer>
+          <!-- ROI Calculator -->
+          <div class="rounded-3xl border border-emerald-500/40 bg-slate-900/60 p-5 shadow-lg shadow-emerald-500/30">
+            <h2 class="text-sm font-semibold tracking-wide text-emerald-300 uppercase">ROI Scenario</h2>
+            <p class="mt-1 text-xs text-slate-400">Rough projection with conservative assumptions.</p>
+
+            <form id="mw-roi-form" class="mt-4 space-y-3 text-xs">
+              <div>
+                <label class="mb-1 block text-slate-300" for="mw_spend">Monthly ad spend (USD)</label>
+                <input id="mw_spend" type="number" min="1000" step="100" class="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-xs text-slate-50 outline-none focus:border-emerald-400" value="10000">
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="mb-1 block text-slate-300" for="mw_conversion">Site conversion rate (%)</label>
+                  <input id="mw_conversion" type="number" min="0.3" max="25" step="0.1" class="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-xs text-slate-50 outline-none focus:border-emerald-400" value="2.5">
+                </div>
+                <div>
+                  <label class="mb-1 block text-slate-300" for="mw_ltv">Customer LTV (USD)</label>
+                  <input id="mw_ltv" type="number" min="50" step="10" class="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-xs text-slate-50 outline-none focus:border-emerald-400" value="500">
+                </div>
+              </div>
+              <div>
+                <label class="mb-1 block text-slate-300" for="mw_growth">Expected lift from clean tracking & optimisation (%)</label>
+                <input id="mw_growth" type="number" min="5" max="200" step="5" class="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-xs text-slate-50 outline-none focus:border-emerald-400" value="25">
+              </div>
+            </form>
+
+            <div class="mt-4 rounded-2xl bg-slate-900/80 p-4 text-xs">
+              <p class="text-[11px] uppercase tracking-wide text-slate-400">12-month projection</p>
+              <p class="mt-2 text-lg font-semibold text-emerald-300" id="mw_roi_revenue">$2,611,404</p>
+              <p class="mt-1 text-[11px] text-slate-400">
+                Approx. incremental revenue attributed to Marketing Widget interventions (excl. product & ops changes).
+              </p>
+              <p class="mt-3 text-[11px] text-slate-300">
+                Estimated ROI: <span id="mw_roi_percent" class="font-semibold text-emerald-300">2076.2%</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-10">
+          <button class="bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-transform hover:scale-105" id="ai-assistant-btn">
+            <i class="fas fa-microchip"></i>
+            AI Assistant
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <main class="container mx-auto px-6">
+      <!-- Social Proof -->
+      <section class="py-20 text-center">
+        <h2 class="text-3xl font-bold text-slate-50">Trusted by Industry Leaders</h2>
+        <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 mt-12 opacity-50">
+          <div class="w-36 h-14 bg-slate-900/50 border border-slate-800 rounded-lg flex items-center justify-center text-slate-400 font-semibold">LOGO</div>
+          <div class="w-36 h-14 bg-slate-900/50 border border-slate-800 rounded-lg flex items-center justify-center text-slate-400 font-semibold">LOGO</div>
+          <div class="w-36 h-14 bg-slate-900/50 border border-slate-800 rounded-lg flex items-center justify-center text-slate-400 font-semibold">LOGO</div>
+          <div class="w-36 h-14 bg-slate-900/50 border border-slate-800 rounded-lg flex items-center justify-center text-slate-400 font-semibold">LOGO</div>
+        </div>
+      </section>
+
+      <!-- Growth Session CTA -->
+      <section class="py-20" id="growth-session">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-4xl font-extrabold text-slate-50">One calm, brutally honest growth session.</h2>
+          <p class="mt-4 text-slate-400">
+            Bring your current numbers, channels, and constraints. We'll map the 80/20 levers and show you how messy data is silently capping your growth. If we're not the right partner, you'll still leave with a cleaner plan.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12 max-w-6xl mx-auto">
+          <div class="p-8 bg-slate-900/40 border border-slate-800 rounded-2xl backdrop-blur-lg">
+            <h3 class="text-lg font-bold text-slate-50">In the 30-min session, we'll:</h3>
+            <ul class="space-y-4 mt-6 text-slate-400">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check-circle text-emerald-400 mt-1"></i>
+                <span>Trace the full customer journey from first touch to repeat purchase.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check-circle text-emerald-400 mt-1"></i>
+                <span>Spot tracking gaps, attribution blind spots, and "fake winning" campaigns.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check-circle text-emerald-400 mt-1"></i>
+                <span>Rank growth opportunities by effort vs impact.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check-circle text-emerald-400 mt-1"></i>
+                <span>Outline a 90-day roadmap you can follow — with or without us.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="p-8 bg-slate-900/40 border border-slate-800 rounded-2xl backdrop-blur-lg">
+            <form class="space-y-6" id="session-form">
+              <div>
+                <label class="sr-only" for="session-name">Name</label>
+                <input class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:ring-emerald-400 focus:border-emerald-400" id="session-name" placeholder="Name" type="text"/>
+              </div>
+              <div>
+                <label class="sr-only" for="session-email">Email</label>
+                <input class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:ring-emerald-400 focus:border-emerald-400" id="session-email" placeholder="Email" type="email"/>
+              </div>
+              <div>
+                <label class="sr-only" for="session-url">Company URL</label>
+                <input class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:ring-emerald-400 focus:border-emerald-400" id="session-url" placeholder="Company URL" type="url"/>
+              </div>
+              <button class="w-full bg-gradient-to-r from-cyan-500 to-emerald-400 text-slate-950 font-bold py-4 rounded-lg transition-transform hover:scale-105" type="submit">
+                Request Session
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="flex justify-center mt-12">
+          <button class="bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-transform hover:scale-105">
+            <i class="fas fa-microchip"></i>
+            AI Assistant
+          </button>
+        </div>
+      </section>
+
+      <!-- Final CTA Section -->
+      <section class="py-20">
+        <div class="p-8 bg-slate-900/40 border border-slate-800 rounded-2xl backdrop-blur-lg max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <h2 class="text-4xl font-bold text-slate-50">Ready to Revolutionize Your Marketing?</h2>
+            <form class="space-y-4" id="audit-form">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <input class="sm:col-span-1 bg-slate-900/80 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:ring-emerald-400 focus:border-emerald-400" placeholder="Name" type="text"/>
+                <input class="sm:col-span-1 bg-slate-900/80 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:ring-emerald-400 focus:border-emerald-400" placeholder="Work Email" type="email"/>
+                <input class="sm:col-span-1 bg-slate-900/80 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:ring-emerald-400 focus:border-emerald-400" placeholder="Company URL" type="url"/>
+              </div>
+              <input class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:ring-emerald-400 focus:border-emerald-400" placeholder="Marketing Goals" type="text"/>
+              <button class="w-full bg-gradient-to-r from-emerald-400 to-cyan-500 text-slate-950 font-bold py-4 rounded-lg transition-transform hover:scale-105" type="submit">
+                Request Your AI Marketing Audit
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="container mx-auto px-6 py-8 mt-12 border-t border-slate-800">
+      <div class="flex flex-col sm:flex-row justify-between items-center text-sm text-slate-400">
+        <p>© 2024 Cognitive Reach. All rights reserved.</p>
+        <div class="flex items-center space-x-6 mt-4 sm:mt-0">
+          <a class="hover:text-white transition-colors" href="#">About Us</a>
+          <a class="hover:text-white transition-colors" href="#">Services</a>
+          <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+        </div>
+        <div class="flex items-center space-x-4 mt-4 sm:mt-0">
+          <a class="hover:text-white transition-colors text-lg" href="#"><i class="fab fa-facebook"></i></a>
+          <a class="hover:text-white transition-colors text-lg" href="#"><i class="fab fa-twitter"></i></a>
+          <a class="hover:text-white transition-colors text-lg" href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- AI Assistant Modal -->
+  <div class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center" id="ai-modal">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full mx-4 p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold flex items-center gap-2 text-slate-50">
+          <i class="fas fa-microchip text-emerald-400"></i>
+          AI Assistant
+        </h3>
+        <button class="text-slate-400 hover:text-white transition-colors" id="close-modal">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      <div class="bg-slate-900/50 border border-slate-800 rounded-lg p-4 mb-4 h-64 overflow-y-auto" id="chat-messages">
+        <div class="text-slate-300 text-sm">
+          <p class="mb-2"><span class="text-emerald-400 font-semibold">AI:</span> Hello! I'm your Marketing Widget AI assistant. How can I help you optimize your marketing today?</p>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <input class="flex-1 bg-slate-900/80 border border-slate-700 rounded-lg px-4 py-2 text-white placeholder-slate-500" id="chat-input" placeholder="Ask me anything..." type="text"/>
+        <button class="bg-gradient-to-r from-cyan-500 to-emerald-400 text-slate-950 font-bold px-4 py-2 rounded-lg transition-transform hover:scale-105" id="send-message">
+          <i class="fas fa-paper-plane"></i>
+        </button>
       </div>
     </div>
-  </body>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // ROI Calculator
+    const mwSpend = document.getElementById('mw_spend');
+    const mwConversion = document.getElementById('mw_conversion');
+    const mwLtv = document.getElementById('mw_ltv');
+    const mwGrowth = document.getElementById('mw_growth');
+    const mwRoiRevenue = document.getElementById('mw_roi_revenue');
+    const mwRoiPercent = document.getElementById('mw_roi_percent');
+
+    function calculateROI() {
+      const adSpend = parseFloat(mwSpend.value) || 0;
+      const conversionRate = parseFloat(mwConversion.value) / 100 || 0;
+      const ltv = parseFloat(mwLtv.value) || 0;
+      const lift = parseFloat(mwGrowth.value) / 100 || 0;
+
+      const monthlyVisitors = adSpend / 2;
+      const baselineCustomers = monthlyVisitors * conversionRate;
+      const baselineRevenue = baselineCustomers * ltv * 12;
+      const liftedRevenue = baselineRevenue * (1 + lift);
+      const incrementalRevenue = liftedRevenue - baselineRevenue;
+      const investment = adSpend * 12 * 0.1;
+      const roi = investment > 0 ? ((incrementalRevenue / investment) * 100) : 0;
+
+      mwRoiRevenue.textContent = '$' + Math.round(liftedRevenue).toLocaleString();
+      mwRoiPercent.textContent = roi.toFixed(1) + '%';
+    }
+
+    [mwSpend, mwConversion, mwLtv, mwGrowth].forEach(input => {
+      input.addEventListener('input', calculateROI);
+    });
+
+    // AI Assistant Modal
+    const aiModal = document.getElementById('ai-modal');
+    const closeModal = document.getElementById('close-modal');
+    const chatInput = document.getElementById('chat-input');
+    const sendMessage = document.getElementById('send-message');
+    const chatMessages = document.getElementById('chat-messages');
+
+    document.querySelectorAll('button').forEach(btn => {
+      if (btn.textContent.includes('AI Assistant')) {
+        btn.addEventListener('click', () => {
+          aiModal.classList.remove('hidden');
+          aiModal.classList.add('flex');
+        });
+      }
+    });
+
+    closeModal.addEventListener('click', () => {
+      aiModal.classList.add('hidden');
+      aiModal.classList.remove('flex');
+    });
+
+    aiModal.addEventListener('click', (e) => {
+      if (e.target === aiModal) {
+        aiModal.classList.add('hidden');
+        aiModal.classList.remove('flex');
+      }
+    });
+
+    function addMessage(text, isUser = false) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'mb-2';
+      msgDiv.innerHTML = '<span class="' + (isUser ? 'text-cyan-400' : 'text-emerald-400') + ' font-semibold">' + (isUser ? 'You' : 'AI') + ':</span> ' + text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    const aiResponses = [
+      "I'd recommend starting with a tracking audit to identify data gaps in your customer journey.",
+      "Based on industry benchmarks, a 25% lift in conversion is achievable with proper attribution.",
+      "Let me analyze your current funnel... Have you considered server-side tracking?",
+      "Great question! Our 90-day roadmap typically focuses on quick wins first.",
+      "Would you like me to schedule a growth session with our team?"
+    ];
+
+    sendMessage.addEventListener('click', () => {
+      const message = chatInput.value.trim();
+      if (message) {
+        addMessage(message, true);
+        chatInput.value = '';
+        
+        setTimeout(() => {
+          const response = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+          addMessage(response);
+        }, 1000);
+      }
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage.click();
+      }
+    });
+
+    // Form submissions
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you! We\'ll be in touch soon.');
+      });
+    });
+  </script>
+</body>
 </html>
