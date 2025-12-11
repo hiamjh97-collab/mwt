@@ -22,13 +22,16 @@ import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import ChatWidget from './components/ChatWidget';
 // App.tsx snippet
-...
+// App.tsx (Already Correct)
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+// ...
 const App: React.FC = () => {
   return (
-    <HashRouter> // <-- YOU ARE ALREADY USING HashRouter!
-      <ScrollToTop />
-      <Routes>
-// ... all your <Route path="/page"> elements
+    <HashRouter> {/* This ensures all 35 pages work on refresh */}
+      {/* ... */}
+    </HashRouter>
+  );
+};
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
