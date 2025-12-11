@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
     // This line correctly loads environment variables from your .env files
     const env = loadEnv(mode, '.', '');
     return {
-      // 🚨 CRITICAL FIX: Set the base path to your GitHub repository name
+      // CRITICAL FIX: Set the base path to your GitHub repository name
       base: "/copy-of-marketing-widget/", 
       
       server: {
