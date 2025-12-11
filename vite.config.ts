@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      // CRITICAL: Set the base path to your GitHub repository name
+      // CRITICAL FIX: Base path for GitHub Pages
       base: "/copy-of-marketing-widget/", 
       
       server: {
@@ -14,7 +14,6 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [react()],
       define: {
-        // You can leave the API Key definition as-is; it's handled via .env files.
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
       },
