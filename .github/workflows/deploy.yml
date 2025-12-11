@@ -3,7 +3,7 @@ name: Deploy Vite App to Pages
 
 on:
   push:
-    branches: ["branew"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -25,13 +25,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         
-      - name: Setup Node.js 💡 # CRITICAL FIX: Removed the 'cache' line
+      - name: Setup Node.js 
+        # Cache line removed to prevent lock file error
         uses: actions/setup-node@v4
         with:
           node-version: '20' 
       
       - name: Install Dependencies
-        # This will run successfully now and create package-lock.json
+        # This will now run successfully after fixing package.json
         run: npm install
         
       - name: Build Project 🏗️
