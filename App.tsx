@@ -21,7 +21,14 @@ import Careers from './pages/Careers';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import ChatWidget from './components/ChatWidget';
-
+// App.tsx snippet
+...
+const App: React.FC = () => {
+  return (
+    <HashRouter> // <-- YOU ARE ALREADY USING HashRouter!
+      <ScrollToTop />
+      <Routes>
+// ... all your <Route path="/page"> elements
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
