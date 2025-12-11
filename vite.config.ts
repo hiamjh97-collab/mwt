@@ -5,9 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      // 🚨 CRITICAL: Base path to prevent blank page on GitHub Pages
+      // CRITICAL FIX: Base path for GitHub Pages deployment
       base: "/copy-of-marketing-widget/", 
-      
       server: {
         port: 3000,
         host: '0.0.0.0',
