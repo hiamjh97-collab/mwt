@@ -26,13 +26,11 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Setup Node.js 
-        # Cache line removed to prevent lock file error
         uses: actions/setup-node@v4
         with:
           node-version: '20' 
       
       - name: Install Dependencies
-        # This will now run successfully after fixing package.json
         run: npm install
         
       - name: Build Project 🏗️
